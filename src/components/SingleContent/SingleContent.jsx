@@ -1,27 +1,33 @@
 import { Badge } from "@material-ui/core";
 import { img_300, unavailable } from "../../config/config";
 import "./SingleContent.css";
-// import ContentModal from "../ContentModal/ContentModal";
-const SingleContent = (props) => {
+import ContentModal from "../ContentModal/ContentModal";
+
+const SingleContent = ({
+  id,
+  poster,
+  title,
+  date,
+  media_type,
+  vote_average,
+}) => {
   return (
-    <>
-      <div className="media">
-        <Badge
-          badgeContent={props.vote_average}
-          color={props.vote_average > 6 ? "primary" : "secondary"}
-        />
-        <img
-          className="poster"
-          src={props.poster ? `${img_300}${props.poster}` : unavailable}
-          alt={props.title}
-        />
-        <b className="title">{props.title}</b>
-        <span className="subTitle">
-          {props.media_type === "tv" ? "TV Series" : "Movie"}
-          <span className="subTitle">{props.date}</span>
-        </span>
-      </div>
-    </>
+    <ContentModal media_type={media_type} id={id}>
+      <Badge
+        badgeContent={vote_average}
+        color={vote_average > 6 ? "primary" : "secondary"}
+      />
+      <img
+        className="poster"
+        src={poster ? `${img_300}${poster}` : unavailable}
+        alt={title}
+      />
+      <b className="title">{title}</b>
+      <span className="subTitle">
+        {media_type === "tv" ? "TV Series" : "Movie"}
+        <span className="subTitle">{date}</span>
+      </span>
+    </ContentModal>
   );
 };
 
